@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
     <title>Colorectal Cancer Detection</title>
 </head>
+
 <body>
     <div class="header">
         <h1>Colorectal Cancer Detection</h1>
         <img src="/static/image-removebg-preview.png" alt="logo">
     </div>
     <hr>
+    <div class="container">
+        <div class="about-cc">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac tortor malesuada, mollis elit quis,
+                facilisis nunc. Donec dictum orci ac lorem luctus, ut varius libero pellentesque. Quisque ullamcorper
+                velit augue, quis dapibus elit tristique sed. In sapien orci, accumsan sit amet risus vel, posuere
+                placerat nunc. Curabitur id nibh malesuada, tincidunt est vel, pulvinar dolor. Mauris ut consectetur
+                velit, id lacinia velit. Sed quis pellentesque ipsum. Phasellus sed porttitor elit, id fringilla ex.
+                Donec nec nunc est.</p>
+            <hr>
+            <div class="mission">
+                <h2>Mission: </h2>
+                <p>An effective way for doctors to analyze tissue samples for early diagnoses and prediction of colorectal cancer</p>
+            </div>
+            <img class="research-img"src="/static/research.jpg" alt="research image">
+        </div>
+        <div class="input-div">
+            <label for="file-upload">
+                <img id="input-image" src="/static/upload-icon.jpg" alt="Click to upload" style="cursor: pointer;" />
+            </label>
+            <input type="file" id="file-upload" accept=".png, .jpg, .jpeg" style="display: none;">
+            <button id="submit-button">Detect</button>
+            <div id="result" class="result">
+                <p id="result"></p>
+            </div>
+        </div>
+    </div>
+   
+    <footer>
+        <p>© 2025 Colorectal Cancer Detection. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('input-image').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('submit-button').addEventListener('click', function() {
+            console.log("coming soon");
+        });
+    </script>
 </body>
+
 </html>
