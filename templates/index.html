@@ -11,23 +11,18 @@
 <body>
     <div class="header">
         <h1>Colorectal Cancer Detection</h1>
-        <img src="/static/image-removebg-preview.png" alt="logo">
     </div>
     <hr>
     <div class="container">
         <div class="about-cc">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac tortor malesuada, mollis elit quis,
-                facilisis nunc. Donec dictum orci ac lorem luctus, ut varius libero pellentesque. Quisque ullamcorper
-                velit augue, quis dapibus elit tristique sed. In sapien orci, accumsan sit amet risus vel, posuere
-                placerat nunc. Curabitur id nibh malesuada, tincidunt est vel, pulvinar dolor. Mauris ut consectetur
-                velit, id lacinia velit. Sed quis pellentesque ipsum. Phasellus sed porttitor elit, id fringilla ex.
-                Donec nec nunc est.</p>
+            <p>Colorectal cancer is a disease where cancerous tumors develop in the colon or rectum, which are parts of
+                the large intestine. Currently, diagnoses of this cancer is rapidly increasing making
+                it the thrid most common type of cancer in the United States. Efficient detection of different
+                characteristics of the cancer takes far too long which only exacerbates the problem even further. That
+                is why we've developed this machine learning model to identify tissues into different groups. Automating
+                this process with the help of AI is the only way to save the lives of thousands of innocent people.</p>
             <hr>
-            <div class="mission">
-                <h2>Mission: </h2>
-                <p>An effective way for doctors to analyze tissue samples for early diagnoses and prediction of colorectal cancer</p>
-            </div>
-            <img class="research-img"src="/static/research.jpg" alt="research image">
+            <img class="research-img" src="/static/research.jpg" alt="research image">
         </div>
         <div class="input-div">
             <label for="file-upload">
@@ -40,26 +35,36 @@
             </div>
         </div>
     </div>
-   
+
     <footer>
         <p>© 2025 Colorectal Cancer Detection. All rights reserved.</p>
     </footer>
 
     <script>
-        document.getElementById('file-upload').addEventListener('change', function(event) {
+        document.getElementById('file-upload').addEventListener('change', function (event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('input-image').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        document.getElementById('submit-button').addEventListener('click', function() {
+        document.getElementById('submit-button').addEventListener('click', function () {
             console.log("coming soon");
+            fetch('/predict', {
+                method: 'POST',
+                body: new FormData("image", document.getElementById('file-upload').file),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = data.message;
+                console.log(data);
+            })
         });
+
     </script>
 </body>
 
