@@ -27,7 +27,6 @@ body {
     height: 75px;
 }
 
-
 .container {
     flex: 1;
     display: flex;
@@ -94,6 +93,10 @@ label img {
     margin: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+}
+
+.result {
+    text-align: center;
 }
 
 footer {
