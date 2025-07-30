@@ -3,6 +3,7 @@ from matplotlib.image import imread
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+import gdown
 
 from model import Model
 model = Model(load_existing_model=True)
@@ -50,4 +51,7 @@ def predict():
     return jsonify({'message': f"{predicted_value}", "description": descriptions[predicted_value]})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    url = 'https://drive.google.com/uc?id=1rPrwRTzHqDzMj_2-EcMLgHWvg61tHg_-'
+    output = 'model/model.keras'
+    gdown.download(url, output, quiet=False)
+    app.run(debug=True)
